@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelebratePro - Social Event Management</title>
+    <style>
+        :root {
+            --primary-color: #ff6b8b;
+            --secondary-color: #6b8bff;
+            --dark-color: #333344;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #5a7bff;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff5a7b;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .event-types {
+            background-color: #f0f4f8;
+        }
+        
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .event-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .event-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .event-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .concerts {
+            background-color: white;
+        }
+        
+        .concert-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .concert-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .concert-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .concert-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .concert-content {
+            padding: 1.5rem;
+        }
+        
+        .concert-date {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .concert-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .concert-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .testimonials {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+        }
+        
+        .testimonial-event {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        /* Ticket booking form */
+        .booking-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .ticket-options {
+            margin-bottom: 1.5rem;
+        }
+        
+        .ticket-option {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .ticket-option select {
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Celebrate<span>Pro</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#events">Event Types</a></li>
+                    <li><a href="#concerts">Concerts</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+<li><a href="admin_login.php">Admin</a></li>
+                    <li><a href="#modal" class="btn btn-primary" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Make Every Celebration Unforgettable</h1>
+            <p>From intimate gatherings to grand parties, we provide everything you need to plan and execute perfect social events. Let us handle the details while you enjoy the moment.</p>
+            <a href="#contact" class="btn">Plan Your Event</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎉</div>
+                    <h3>Complete Event Planning</h3>
+                    <p>Full-service planning for all types of social events, from concept to execution.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎟</div>
+                    <h3>Ticket Management</h3>
+                    <p>Sell tickets online with secure payment processing for concerts and special events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>Photography Services</h3>
+                    <p>Professional photographers to capture your special moments beautifully.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽</div>
+                    <h3>Catering Coordination</h3>
+                    <p>Delicious food and beverage options tailored to your event's theme and budget.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Theme & Decor</h3>
+                    <p>Creative themes and stunning decorations to bring your vision to life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎶</div>
+                    <h3>Entertainment</h3>
+                    <p>DJs, live bands, and performers to keep your guests entertained.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="event-types" id="events">
+        <div class="container">
+            <h2 class="section-title">We Specialize In</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <div class="event-icon">🎂</div>
+                    <h3>Birthday Parties</h3>
+                    <p>Memorable celebrations for all ages, from kids to adults.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">👶</div>
+                    <h3>Naming Ceremonies</h3>
+                    <p>Beautiful traditions to welcome your little one.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">💍</div>
+                    <h3>Engagements</h3>
+                    <p>Romantic settings to celebrate your love story.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🌿</div>
+                    <h3>Haldi Ceremonies</h3>
+                    <p>Vibrant pre-wedding celebrations full of joy.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🏢</div>
+                    <h3>Opening Ceremonies</h3>
+                    <p>Grand launches for businesses and institutions.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">👶🍼</div>
+                    <h3>Baby Showers</h3>
+                    <p>Heartwarming gatherings to celebrate new beginnings.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">👰‍♀</div>
+                    <h3>Bachelorette Parties</h3>
+                    <p>Fun-filled last fling before the ring!</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🏆</div>
+                    <h3>Success Parties</h3>
+                    <p>Celebrating achievements and milestones.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">👥</div>
+                    <h3>Get-Togethers</h3>
+                    <p>Casual gatherings for friends and family.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🍸</div>
+                    <h3>Cocktail Parties</h3>
+                    <p>Sophisticated mixers with style.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🍽</div>
+                    <h3>Dinner Parties</h3>
+                    <p>Elegant evenings of fine dining and conversation.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🎤</div>
+                    <h3>Concert Tickets</h3>
+                    <p>Secure booking for your favorite music events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="concerts" id="concerts">
+        <div class="container">
+            <h2 class="section-title">Upcoming Concerts</h2>
+            <div class="concert-cards">
+                <div class="concert-card">
+                    <div class="concert-img" style="background-image: url('https://source.unsplash.com/random/600x400/?popconcert');"></div>
+                    <div class="concert-content">
+                        <div class="concert-date">June 15, 2025</div>
+                        <h3>Summer Pop Festival</h3>
+                        <p>Join us for the hottest pop acts of the season in this outdoor extravaganza.</p>
+                        <a href="#" class="btn btn-primary book-ticket">Book Tickets</a>
+                    </div>
+                </div>
+                <div class="concert-card">
+                    <div class="concert-img" style="background-image: url('https://source.unsplash.com/random/600x400/?jazzconcert');"></div>
+                    <div class="concert-content">
+                        <div class="concert-date">July 22, 2025</div>
+                        <h3>Jazz Under the Stars</h3>
+                        <p>An evening of smooth jazz with world-renowned musicians.</p>
+                        <a href="#" class="btn btn-primary book-ticket">Book Tickets</a>
+                    </div>
+                </div>
+                <div class="concert-card">
+                    <div class="concert-img" style="background-image: url('https://source.unsplash.com/random/600x400/?rockconcert');"></div>
+                    <div class="concert-content">
+                        <div class="concert-date">August 5, 2025</div>
+                        <h3>Rock Revolution Tour</h3>
+                        <p>Three legendary rock bands in one unforgettable night.</p>
+                        <a href="#" class="btn btn-primary book-ticket">Book Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"CelebratePro made my daughter's birthday party magical! They handled everything from decorations to entertainment, allowing me to actually enjoy the party."</p>
+                    <div class="testimonial-author">Priya Sharma</div>
+                    <div class="testimonial-event">Birthday Party</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Our engagement ceremony was more beautiful than we imagined. The team's attention to detail was incredible and they perfectly captured our vision."</p>
+                    <div class="testimonial-author">Rahul & Ananya</div>
+                    <div class="testimonial-event">Engagement Ceremony</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Booking concert tickets through CelebratePro was so easy! Great seats and a seamless process. Will definitely use them again for future events."</p>
+                    <div class="testimonial-author">Arjun Patel</div>
+                    <div class="testimonial-event">Concert Attendee</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Plan Your Event</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-type">Event Type</label>
+                        <select id="event-type" name="event-type" required>
+                            <option value="">Select an event type</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="naming">Naming Ceremony</option>
+                            <option value="engagement">Engagement</option>
+                            <option value="haldi">Haldi Ceremony</option>
+                            <option value="opening">Opening Ceremony</option>
+                            <option value="babyshower">Baby Shower</option>
+                            <option value="bachelorette">Bachelorette Party</option>
+                            <option value="success">Success Party</option>
+                            <option value="getogether">Get-Together</option>
+                            <option value="cocktail">Cocktail Party</option>
+                            <option value="dinner">Dinner Party</option>
+                            <option value="concert">Concert Tickets</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-date">Event Date</label>
+                        <input type="date" id="event-date" name="event-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Estimated Number of Guests</label>
+                        <input type="number" id="guests" name="guests" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Event</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CelebratePro</h3>
+                    <p>Your complete solution for social event management. Creating memorable experiences for every occasion.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Services</a></li>
+                        <li><a href="#events">Event Types</a></li>
+                        <li><a href="#concerts">Concerts</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+            <li><a href="#admin">Admin</a></li>
+
+
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Event Types</h3>
+                    <ul>
+                        <li><a href="#">Birthdays</a></li>
+                        <li><a href="#">Engagements</a></li>
+                        <li><a href="#">Baby Showers</a></li>
+                        <li><a href="#">Bachelorette</a></li>
+                        <li><a href="#">Get-Togethers</a></li>
+                        <li><a href="#">Concerts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>123 Celebration Street</li>
+                        <li>Party City, PC 12345</li>
+                        <li>info@celebratepro.com</li>
+                        <li>(123) 456-7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CelebratePro Event Management. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content fade-in">
+            <span class="close-btn">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p style="margin-top: 1rem;">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content fade-in">
+            <span class="close-btn">&times;</span>
+            <h2>Create an Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <p style="margin-top: 1rem;">Already have an account? <a href="#" id="loginLink">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ticket Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content fade-in">
+            <span class="close-btn">&times;</span>
+            <h2>Book Concert Tickets</h2>
+            <div class="booking-form">
+                <h3 id="concert-title">Summer Pop Festival</h3>
+                <p id="concert-date">June 15, 2025</p>
+                
+                <div class="ticket-options">
+                    <div class="ticket-option">
+                        <div>
+                            <strong>General Admission</strong>
+                            <p>$49.99 each</p>
+                        </div>
+                        <select id="ga-tickets">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="ticket-option">
+                        <div>
+                            <strong>VIP</strong>
+                            <p>$99.99 each</p>
+                        </div>
+                        <select id="vip-tickets">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="booking-name">Full Name</label>
+                    <input type="text" id="booking-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-email">Email</label>
+                    <input type="email" id="booking-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-phone">Phone Number</label>
+                    <input type="tel" id="booking-phone" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary" id="confirm-booking">Continue to Payment</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    // Modal functionality
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const bookingModal = document.getElementById('bookingModal');
+    const closeBtns = document.querySelectorAll('.close-btn');
+    const signupLink = document.getElementById('signupLink');
+    const loginLink = document.getElementById('loginLink');
+    const bookTicketBtns = document.querySelectorAll('.book-ticket');
+
+    // Open login modal
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'block';
+    });
+
+    // Open signup modal from login modal
+    signupLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'none';
+        signupModal.style.display = 'block';
+    });
+
+    // Open login modal from signup modal
+    loginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupModal.style.display = 'none';
+        loginModal.style.display = 'block';
+    });
+
+    // Close modals when clicking X
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'none';
+            bookingModal.style.display = 'none';
+        });
+    });
+
+    // Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+        }
+        if (e.target === signupModal) {
+            signupModal.style.display = 'none';
+        }
+        if (e.target === bookingModal) {
+            bookingModal.style.display = 'none';
+        }
+    });
+
+    // Handle ticket booking buttons
+    bookTicketBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const card = e.target.closest('.concert-card');
+            const title = card.querySelector('h3').textContent;
+            const date = card.querySelector('.concert-date').textContent;
+            
+            document.getElementById('concert-title').textContent = title;
+            document.getElementById('concert-date').textContent = date;
+            
+            bookingModal.style.display = 'block';
+        });
+    });
+
+    // Form submissions (keep your existing form submission handlers)
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        const data = new FormData(this);
+    
+        fetch("signup.php", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {
+            alert(result);
+            this.reset();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const data = new FormData(this);
+
+        fetch("event_request.php", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {
+            alert(result);
+            this.reset();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+
+    document.getElementById("confirm-booking").addEventListener("click", function () {
+        const concert = document.getElementById("concert-title").innerText;
+        const concert_date = document.getElementById("concert-date").innerText;
+        const name = document.getElementById("booking-name").value;
+        const email = document.getElementById("booking-email").value;
+        const phone = document.getElementById("booking-phone").value;
+        const ga_tickets = document.getElementById("ga-tickets").value;
+        const vip_tickets = document.getElementById("vip-tickets").value;
+
+        const data = new FormData();
+        data.append("concert", concert);
+        data.append("concert_date", concert_date);
+        data.append("name", name);
+        data.append("email", email);
+        data.append("phone", phone);
+        data.append("ga_tickets", ga_tickets);
+        data.append("vip_tickets", vip_tickets);
+
+        fetch("book_ticket.php", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {
+            alert(result);
+            document.querySelector(".booking-form").reset();
+            bookingModal.style.display = 'none';
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+</script>
+    
+</html>
